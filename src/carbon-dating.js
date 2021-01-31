@@ -4,10 +4,10 @@ const MODERN_ACTIVITY= 15;
 const HALF_LIFE_PERIOD= 5730;
 
 module.exports = function dateSample(sampleActivity) {
-  let sampleNum = Number(sampleActivity);
-  if (isFinite(sampleNum) || sampleNum > MODERN_ACTIVITY || typeof sampleActivity !== 'string' || isNaN(sampleActivity) || sampleActivity === undefined) {
+  let sampleNum = +sampleActivity;
+  if (sampleNum > MODERN_ACTIVITY || typeof sampleActivity !== 'string' || isNaN(sampleActivity) || sampleActivity === undefined) {
     return false;
     }
     let lnVar = Math.log(MODERN_ACTIVITY / sampleNum);
-    return Math.ceil(lnVar / 0.693 * HALF_LIFE_PERIOD);
+    return isFinite(Math.ceil(lnVar / 0.693 * HALF_LIFE_PERIOD))? Math.ceil(lnVar / 0.693 * HALF_LIFE_PERIOD) : false;
   }
