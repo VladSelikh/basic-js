@@ -1,9 +1,7 @@
 const CustomError = require("../extensions/custom-error");
 
 module.exports = function transform(arr) {
-
   let resultArray = [];
-
     if (!Array.isArray(arr)) throw new Error(`The argument passed is not an array!`);
 
     arr.forEach((item, index, array) => {
@@ -17,7 +15,6 @@ module.exports = function transform(arr) {
         resultArray.push(`--discarded`);
       } else resultArray.push(item);
     })
-
+    
     return resultArray.filter((item) => item !== undefined && item !== `--discard-next` && item !== `--discarded`);
-
 }
